@@ -1,10 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Содержимое рабочей директории</title>
+    <style>
+        ul {
+            list-style-type: none;
+            padding-left: 40px;
+        }
+        li.file {
+            color: blue;
+        }
+        li.directory {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-$END$
+    <h1>Содержимое рабочей директории</h1>
+    <ul>
+        {% for file in files %}
+            {% if file.isdir %}
+                <li class="directory">&#10140; {{ file }}</li>
+            {% else %}
+                <li class="file">{{ file }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
 </body>
 </html>
