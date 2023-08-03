@@ -41,12 +41,25 @@
             </tbody>
         </table>
 
-        {% if page.has_previous %}
-            <a class="button button-primary" href="?page={{ page.previous_page_number }}">⟵</a>
+        {% if bus_stations.has_previous %}
+            <a class="button button-primary" href="?page={{ bus_stations.previous_page_number }}">⟵</a>
         {% endif %}
-        <a class="button disabled" href="">{{ page.number }}</a>
-        {% if page.has_next %}
-            <a class="button button-primary" href="?page={{ page.next_page_number }}">⟶</a>
+        <a class="button disabled" href="">{{ bus_stations.number }}</a>
+        {% if bus_stations.has_next %}
+            <a class="button button-primary" href="?page={{ bus_stations.next_page_number }}">⟶</a>
+        {% endif %}
+    </div>
+
+    <!-- Добавьте следующий код после блока div.row -->
+    <div>
+        {% if bus_stations.has_previous %}
+            <a class="button button-primary" href="?page=1">Первая</a>
+            <a class="button button-primary" href="?page={{ bus_stations.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+        <span class="current-page">{{ bus_stations.number }}</span>
+        {% if bus_stations.has_next %}
+            <a class="button button-primary" href="?page={{ bus_stations.next_page_number }}">Следующая</a>
+            <a class="button button-primary" href="?page={{ bus_stations.paginator.num_pages }}">Последняя</a>
         {% endif %}
     </div>
 </div>
