@@ -24,8 +24,8 @@ class Article(models.Model):
         return self.title
 
 class ArticleSection(models.Model):
-    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='article_sections')  # Добавьте related_name для связи с моделью Article
-    section = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='article_sections')  # Добавьте related_name для связи с моделью Section
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='article_sections')
+    section = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='article_sections')
     is_main = models.BooleanField(default=False)
 
     def __str__(self):
