@@ -1,13 +1,18 @@
 from django.contrib import admin
-
 from .models import Student, Teacher
 
-
-@admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'group', 'display_teachers')
+    filter_horizontal = ('teachers',)
 
+    def display_teachers(self, obj):
+        return ", ".join([teacher.name for teacher in obj.teachers.all()])
 
-@admin.register(Teacher)
+    display_teachers.short_description = 'Преподаватели'
+
 class TeacherAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'subject')
+
+
+admin.site.register(Student, StudentAdmin)
+admin.site.register(Teacher, TeacherAdmin)
