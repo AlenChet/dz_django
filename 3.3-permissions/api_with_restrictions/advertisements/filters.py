@@ -7,7 +7,7 @@ class AdvertisementFilter(filters.FilterSet):
     """Фильтры для объявлений."""
 
     created_at = filters.DateFromToRangeFilter()
-    status = filters.CharFilter(choices=Advertisement.STATUS_CHOICES)
+    status = filters.CharFilter()
     creator = filters.NumberFilter(field_name='creator')
 
     class Meta:
