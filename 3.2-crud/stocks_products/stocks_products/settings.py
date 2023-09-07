@@ -40,7 +40,6 @@ INSTALLED_APPS = [
 
 
     'rest_framework',
-    'rest_framework.pagination.PageNumberPagination',
     'django_filters',
     'logistic',
 ]
