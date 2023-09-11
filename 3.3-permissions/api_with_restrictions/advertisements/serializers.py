@@ -33,6 +33,6 @@ class AdvertisementSerializer(serializers.ModelSerializer):
     def validate(self, data):
         user = self.context['request'].user
         open_ads_count = Advertisement.objects.filter(creator=user, status=Advertisement.OPEN).count()
-        if open_ads_count >= 10 and data.get('status') != Advertisement.CLOSED:
+        if open_ads_count >= 10 and data.get('status') != 'CLOSED':
             raise ValidationError('У вас уже есть 10 открытых объявлений')
         return data

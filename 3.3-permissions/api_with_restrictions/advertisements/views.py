@@ -16,8 +16,9 @@ class AdvertisementViewSet(viewsets.ModelViewSet):
     filterset_class = AdvertisementFilter
     throttle_classes = [AnonRateThrottle, UserRateThrottle]
     def get_permissions(self):
-        if self.request.method == 'POST':
-            self.permission_classes = [permissions.IsAuthenticated, IsAuthorOrReadOnly]
+        if self.action == 'create':
+            return [permissions.IsAuthenticated()]
+        elif self.action in ['update', 'partial_update', 'destroy']:
+            return [permissions.IsAuthenticated(), IsAuthorOrReadOnly()]
         else:
-            self.permission_classes = [permissions.IsAuthenticated]
-        return super().get_permissions()
+            return super().get_permissions()
